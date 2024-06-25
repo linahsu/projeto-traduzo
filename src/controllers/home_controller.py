@@ -31,3 +31,25 @@ def index():
         translate_to=translate_to,
         translated=translated,
     )
+
+
+@home_controller.route("/reverse", methods=["POST"])
+def reverse():
+    languages = LanguageModel.list_dicts()
+
+    translate_from = request.form.get("translate-to")
+    translate_to = request.form.get("translate-from")
+    translated = request.form.get("text-to-translate")
+    text_to_translate = GoogleTranslator(
+        source="auto",
+        target=translate_from
+    ).translate(translated)
+
+    return render_template(
+        "index.html",
+        languages=languages,
+        text_to_translate=text_to_translate,
+        translate_from=translate_from,
+        translate_to=translate_to,
+        translated=translated,
+    )
