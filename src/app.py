@@ -1,5 +1,6 @@
 from flask import Flask
 
+from controllers.home_controller import home_controller
 from controllers.admin_controller import admin_controller
 
 from os import environ
@@ -10,6 +11,7 @@ app = Flask(__name__)
 app.template_folder = "views/templates"
 app.static_folder = "views/static"
 
+app.register_blueprint(home_controller, url_prefix="/")
 app.register_blueprint(admin_controller, url_prefix="/admin")
 
 
