@@ -87,3 +87,6 @@ alldev = [
     "pyflakes==3.0.1",
     "typing_extensions==4.6.2",
 ]
+env = [
+    "DB_NAME=test_db_traduzo"
+]

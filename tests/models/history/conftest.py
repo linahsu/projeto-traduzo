@@ -1,10 +1,17 @@
 import pytest
+from src.app import app
 
 try:
     from src.database.db import db
     from src.models.history_model import HistoryModel
 except ImportError as error:
     pytestmark = pytest.mark.skip(reason=error.msg)
+
+
+@pytest.fixture
+def client():
+    app.testing = True
+    return app.test_client()
 
 
 @pytest.fixture(autouse=True)
